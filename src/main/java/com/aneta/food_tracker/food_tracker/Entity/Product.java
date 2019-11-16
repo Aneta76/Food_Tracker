@@ -4,7 +4,7 @@ package com.aneta.food_tracker.food_tracker.Entity;
 import javax.persistence.*;
 
 @Entity
-@SequenceGenerator(name = "idGenerator", sequenceName = "user_id_seq")
+@SequenceGenerator(name = "idGenerator", sequenceName = "product_id_seq")
 public class Product extends AbstractEntity {
 
     @Column
@@ -21,6 +21,10 @@ public class Product extends AbstractEntity {
 
     @Column
     private Long protein;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_meal")
+    private Meal meal;
 
     public String getName() {
         return name;
@@ -52,6 +56,14 @@ public class Product extends AbstractEntity {
 
     public void setFats(Long fats) {
         this.fats = fats;
+    }
+
+    public Meal getMeal() {
+        return meal;
+    }
+
+    public void setMeal(Meal meal) {
+        this.meal = meal;
     }
 
     public Long getProtein() {
