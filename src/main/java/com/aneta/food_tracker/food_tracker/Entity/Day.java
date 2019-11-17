@@ -1,8 +1,6 @@
 package com.aneta.food_tracker.food_tracker.Entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -16,6 +14,7 @@ public class Day extends AbstractEntity {
     @Column
     private LocalDateTime time;
 
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true , cascade = CascadeType.ALL, mappedBy = "day")
     private Set<Meal> mealSet;
 
     public String getName() {

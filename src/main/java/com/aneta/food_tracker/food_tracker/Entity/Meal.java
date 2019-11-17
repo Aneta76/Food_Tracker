@@ -11,6 +11,10 @@ public class Meal extends AbstractEntity {
     @Column
     private String name;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_day")
+    private Day day;
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "meal")
     private List<Product> products;
 
@@ -28,5 +32,13 @@ public class Meal extends AbstractEntity {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    public Day getDay() {
+        return day;
+    }
+
+    public void setDay(Day day) {
+        this.day = day;
     }
 }
