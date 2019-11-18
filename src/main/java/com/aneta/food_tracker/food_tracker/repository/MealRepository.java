@@ -1,6 +1,6 @@
-package com.aneta.food_tracker.food_tracker.Repository;
+package com.aneta.food_tracker.food_tracker.repository;
 
-import com.aneta.food_tracker.food_tracker.Entity.Meal;
+import com.aneta.food_tracker.food_tracker.entity.Meal;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

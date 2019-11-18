@@ -1,4 +1,4 @@
-package com.aneta.food_tracker.food_tracker.Entity;
+package com.aneta.food_tracker.food_tracker.entity;
 
 import org.springframework.data.domain.Persistable;
 
