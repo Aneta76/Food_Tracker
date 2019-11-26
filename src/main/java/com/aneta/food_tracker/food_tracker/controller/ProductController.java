@@ -4,8 +4,9 @@ import com.aneta.food_tracker.food_tracker.entity.Product;
 import com.aneta.food_tracker.food_tracker.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/product")
@@ -15,6 +16,11 @@ public class ProductController {
 
     public ProductController(ProductService productService) {
         this.productService = productService;
+    }
+
+    @GetMapping({"/",""})
+    public String showProductList(){
+        return "redirect:/product/all";
     }
 
     @PostMapping("/add")
@@ -27,10 +33,27 @@ public class ProductController {
         return "productEdit";
     }
 
-    //read
+    @GetMapping("/all")
+    public String getProductList(Model model) {
+        List<Product> allProducts = productService.getAll();
+        model.addAttribute("ProductList", allProducts);
+        return "productList";
+    }
+
+    @GetMapping("/{id}")
+    public String getOneProduct(Model model, @PathVariable Long id) {
+        Product oneProduct = productService.getOne(id);
+        model.addAttribute("oneProduct", oneProduct);
+        return "productDetails";
+    }
 
     // update
 
     //delete
+    @DeleteMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable Long id) {
+        productService.delete(id);
+        return "redirect:/product/all";
+    }
 
 }
