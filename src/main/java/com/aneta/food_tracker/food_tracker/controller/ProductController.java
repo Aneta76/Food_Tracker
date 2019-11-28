@@ -18,8 +18,8 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping({"/",""})
-    public String showProductList(){
+    @GetMapping({"/", ""})
+    public String showProductList() {
         return "redirect:/product/all";
     }
 
@@ -47,13 +47,28 @@ public class ProductController {
         return "productDetails";
     }
 
-    // update
+    @PostMapping("/update/{id}")
+    public String editProduct(@PathVariable Long id, Model model) {
+        Product productToEdit = productService.getOne(id);
+        model.addAttribute("editedProduct", productToEdit);
+        model.addAttribute("button", "Save Changes");
+        return "productEdit";
+    }
 
-    //delete
+    @PostMapping("/update")
+    public String updateProduct(Product product) {
+        Product updated;
+        if (product.getId() != null) {
+            updated = productService.updateProduct(product);
+        } else {
+            updated = productService.addProduct(product);
+        }
+        return "redirect:/product/" + updated.getId();
+    }
+
     @DeleteMapping("/delete/{id}")
     public String deleteProduct(@PathVariable Long id) {
         productService.delete(id);
         return "redirect:/product/all";
     }
-
 }
