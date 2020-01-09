@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Today's meals</title>
+</head>
+<body>
+<table>
+    <tr th:each="meal : ${allMeals}">
+        <td th:text="${meal.getName()}"></td>
+    <table>
+        <tr th:each="product : ${allProducts}">
+            <td th:text="${product.getName()}">Name</td>
+            <td th:text="${product.getKcalories()}">Kcal</td>
+            <td th:text="${product.getCarbs()}">Carbs</td>
+            <td th:text="${product.getFats()}">Fats</td>
+            <td th:text="${product.getProtein()}">Proteins</td>
+        </tr>
+    </table>
+    </tr>
+</table>
+
+
+</body>
+</html>
