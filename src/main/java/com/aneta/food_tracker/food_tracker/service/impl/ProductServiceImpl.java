@@ -5,9 +5,8 @@ import com.aneta.food_tracker.food_tracker.repository.ProductRepository;
 import com.aneta.food_tracker.food_tracker.service.ProductService;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -25,14 +24,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getOne(Long id) {
-        Optional<Product> productOpt = productRepository.findById(id);
-        return productOpt.get();
+        return productRepository.findById(id).get();
     }
 
     @Override
     public List<Product> getAll() {
         Iterable<Product> all = productRepository.findAll();
-        List<Product> products = new LinkedList<>();
+        List<Product> products = new ArrayList<>();
         for (Product p : all) {
             products.add(p);
         }
@@ -41,8 +39,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product updateProduct(Product product) {
-        productRepository.save(product);
-        return product;
+        return productRepository.save(product);
     }
 
     @Override
