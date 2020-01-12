@@ -40,9 +40,20 @@ public class MealServiceImpl implements MealService {
     }
 
     @Override
-    public Meal updateProduct(Meal meal) {
-        mealRepository.save(meal);
-        return meal;
+    public List<Meal> getMealsByDayId(Long id) {
+        Iterable<Meal> allMeals = mealRepository.findAll();
+        List<Meal> meals = new ArrayList<>();
+        for (Meal m : allMeals) {
+            if (m.getDay().getId() == id) {
+                meals.add(m);
+            }
+        }
+        return meals;
+    }
+
+    @Override
+    public Meal updateMeal(Meal meal) {
+        return null;
     }
 
     @Override

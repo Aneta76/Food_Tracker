@@ -12,7 +12,9 @@ public interface MealService {
 
     List<Meal> getAll();
 
-    Meal updateProduct(Meal meal);
+    List<Meal> getMealsByDayId(Long id);
+
+    Meal updateMeal(Meal meal);
 
     void delete(Long id);
 
